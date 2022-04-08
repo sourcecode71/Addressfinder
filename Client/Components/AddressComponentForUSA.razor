@@ -1,0 +1,107 @@
+﻿@using Addressfinder.Shared.Address
+@using System.Text.RegularExpressions
+
+@inject HttpClient Http
+
+    <div class="col-md-3 col-lg-3 col-sm-0"></div>
+     @if (usaAddress != null)
+    {
+    <div class="col-md-6 col-lg-6 col-sm-12">
+        <EditForm @ref="editForm"   Model ="@usaAddress">
+            <DataAnnotationsValidator />
+            <div class="mb-3">
+                <label for="idAddress" class="form-label">IP </label>
+                <div class="input-group">
+                    <input type="text" class="form-control"  @bind="@usaAddress.IP" placeholder="x.x.x.x">
+                    <div class="input-group-prepend">
+                        <button type ="button" class="btn btn-outline-info" @onclick="LoadFullAdrress" >  <span class="oi oi-magnifying-glass"></span>  </button>
+                    </div>
+                </div>
+                  <ValidationMessage For="@(() => usaAddress.IP)"/>
+                      <div class="text-danger pt-1" > @IpValidationMessage</div> 
+
+              </div>
+
+
+        <div class="mb-3">
+                <label for="strateAddress" class="form-label">Street address* </label>
+                <input class="form-control" @bind ="@usaAddress.SateAddress">
+                <ValidationMessage For="@(() => usaAddress.SateAddress)"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="aptSuiteEtc" class="form-label">Apt. suite, etc </label>
+            <input class="form-control" @bind ="@usaAddress.AptSuite" >
+        </div>
+
+        <div class="mb-3">
+            <label for="city" class="form-label">City* </label>
+            <input class="form-control" @bind ="@usaAddress.City" >
+            <ValidationMessage For="@(() => usaAddress.City)"/>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-md-6 col-lg-6 col-sm-12">
+                <label for="state" class="form-label">Sate* </label>
+                <select   @bind="@usaAddress.Region" class="form-control">
+                    @foreach (var region in regoinLists)
+                    {
+                        <option value="@region.Name">@region.Name</option>
+                    }
+                </select>
+                  <ValidationMessage For="@(() => usaAddress.Region)"/>
+
+                  </div>
+
+                   <div class="col-md-6 col-lg-6 col-sm-12">
+                      <label for="zip" class="form-label">Zip* </label>
+                       <input class="form-control" @bind="@usaAddress.postal">
+                         <ValidationMessage For="@(() => usaAddress.postal)"/>
+                  </div>
+            </div>
+        </EditForm>
+
+    </div>
+    }
+   <div class="col-md-3 col-lg-3 col-sm-0"></div>
+
+@code {
+    [Parameter]
+    public List<StateList.State> regoinLists { get; set; }
+    [Parameter]
+    public UsaAddressViewModel usaAddress { get; set; }
+    EditForm editForm;
+    string IpValidationMessage;
+
+    public bool CanSubmit()
+    {
+        return editForm.EditContext.Validate();
+    }
+
+    protected async Task LoadFullAdrress()
+    {
+        string isIPValid = IsValidIP(usaAddress.IP);
+
+        IpValidationMessage = isIPValid=="Ok"? "": isIPValid;
+
+        if(isIPValid =="Ok"){
+         UsaAddressViewModel  addressResponse = await Http.GetFromJsonAsync<UsaAddressViewModel>("api/Address?ip="+@usaAddress.IP);
+         usaAddress.City = addressResponse.City;
+         usaAddress.postal = addressResponse.postal;
+         usaAddress.Region = addressResponse.Region;
+        }
+    }
+
+    private string IsValidIP(string IP)
+    {
+            const string regexPattern = @"^([\d]{1,3}\.){3}[\d]{1,3}$";
+            var regex = new Regex(regexPattern);
+            if (string.IsNullOrEmpty(IP))
+            {
+                return "IP address  is null";
+            }
+            if (!regex.IsMatch(IP) || IP.Split('.').SingleOrDefault(s => int.Parse(s) > 255) != null)
+                return "Invalid IP Address";
+            return "Ok";
+    }
+}

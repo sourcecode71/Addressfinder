@@ -1,0 +1,74 @@
+﻿@page "/"
+
+@using Addressfinder.Shared.Address
+@using Addressfinder.Shared.Auth
+@inject HttpClient Http
+@inject IJSRuntime JsRuntime
+
+
+<PageTitle>My Address </PageTitle>
+
+<div class="row mb-4">
+    <EditForm  class="row" Model="@gViewModel" OnInvalidSubmit=@InvalidFormSubmitted OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+     <div class="col-md-3 col-lg-3 col-sm-0"></div>
+     <div class="col-md-6 col-lg-6 col-sm-12">
+         <div class="mb-3 row">
+             <div class="col-md-6 col-lg-6 col-sm-12">
+                   <label for="firstName" class="form-label">First Name * </label>
+                   <input id="firstName" name="@gViewModel.FirstName" class="form-control" @bind="@gViewModel.FirstName">
+                    <ValidationMessage For="@(() => gViewModel.FirstName)"/>
+             </div>
+             <div class="col-md-6 col-lg-6 col-sm-12">
+                  <label for="zip" class="form-label">First Name * </label>
+                   <input class="form-control" @bind="@gViewModel.LastName">
+                    <ValidationMessage For="() => gViewModel.LastName"/>
+             </div>
+         </div>
+      </div>
+
+      <div class="col-md-3 col-lg-3 col-sm-0"></div>
+        <AddressComponentForUSA @ref="addressForUsa" regoinLists=@regoinLists usaAddress=@usaAddress />
+      <div class="col-md-3 col-lg-3 col-sm-0"></div>
+    
+      <div class="col-md-3 col-lg-3 col-sm-12">
+        <button class="btn btn-outline-info"  type="submit">Submit</button>
+     </div>
+
+     <div>@testMessage</div>
+
+  </EditForm>
+
+</div>
+
+
+@code{
+    List< StateList.State> regoinLists = new List< StateList.State>();
+    UsaAddressViewModel usaAddress = new UsaAddressViewModel();
+    GuestUserViewModel gViewModel = new GuestUserViewModel();
+
+    AddressComponentForUSA addressForUsa;
+    string testMessage;
+
+    protected override async Task OnInitializedAsync() => regoinLists = await Http.GetFromJsonAsync<List<StateList.State>>("api/Address/region").ConfigureAwait(false);
+
+    protected async Task HandleValidSubmit()
+    {
+        // await JsRuntime.InvokeVoidAsync("alert", "Warning!"); // Alert
+        if (addressForUsa.CanSubmit())
+        {
+            var myAddress = gViewModel;
+            myAddress.UaVM = usaAddress;
+            await Http.PostAsJsonAsync("api/Address/my-address",myAddress).ConfigureAwait(false); 
+        }
+    }
+
+    void InvalidFormSubmitted(EditContext editContext)
+    {
+        if (addressForUsa.CanSubmit())
+        {
+            
+        }
+    }
+
+}

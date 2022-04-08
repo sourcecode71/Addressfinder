@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Addressfinder.Server", "Server\Addressfinder.Server.csproj", "{BB1D48EF-A6C6-4464-80D9-5932D3076CD5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Addressfinder.Client", "Client\Addressfinder.Client.csproj", "{875EF3FB-D81C-4543-91B0-F7C402EAA7F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Addressfinder.Shared", "Shared\Addressfinder.Shared.csproj", "{FDC5D836-A6FA-40B3-A1BC-D3D40645D71C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Addressfinder.Repository", "Repository\Addressfinder.Repository.csproj", "{0DBA13D1-E9E4-4215-8D8F-DDA1B7C52160}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Addressfinder.Services", "Services\Addressfinder.Services.csproj", "{CC85FCE2-E16A-4C51-B630-71C7EFDD1A01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB1D48EF-A6C6-4464-80D9-5932D3076CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1D48EF-A6C6-4464-80D9-5932D3076CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1D48EF-A6C6-4464-80D9-5932D3076CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1D48EF-A6C6-4464-80D9-5932D3076CD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{875EF3FB-D81C-4543-91B0-F7C402EAA7F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{875EF3FB-D81C-4543-91B0-F7C402EAA7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{875EF3FB-D81C-4543-91B0-F7C402EAA7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{875EF3FB-D81C-4543-91B0-F7C402EAA7F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC5D836-A6FA-40B3-A1BC-D3D40645D71C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC5D836-A6FA-40B3-A1BC-D3D40645D71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC5D836-A6FA-40B3-A1BC-D3D40645D71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC5D836-A6FA-40B3-A1BC-D3D40645D71C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DBA13D1-E9E4-4215-8D8F-DDA1B7C52160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DBA13D1-E9E4-4215-8D8F-DDA1B7C52160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DBA13D1-E9E4-4215-8D8F-DDA1B7C52160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DBA13D1-E9E4-4215-8D8F-DDA1B7C52160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC85FCE2-E16A-4C51-B630-71C7EFDD1A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC85FCE2-E16A-4C51-B630-71C7EFDD1A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC85FCE2-E16A-4C51-B630-71C7EFDD1A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC85FCE2-E16A-4C51-B630-71C7EFDD1A01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD2C5A3D-E577-41D4-B54D-581B362B827D}
+	EndGlobalSection
+EndGlobal

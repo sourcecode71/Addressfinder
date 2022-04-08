@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/d24YcQ0bdvViGHbUYBiwWh3mg0XvoNmhqtV47AVFFMKNOx1foQzDRDhO/Rg3z1O5WSHjP7M24VIvPBgTL3zkA==",
+  "success": true,
+  "projectFilePath": "D:\\Learning\\Addressfinder\\Shared\\Addressfinder.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
