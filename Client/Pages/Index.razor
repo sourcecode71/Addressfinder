@@ -9,9 +9,11 @@
 <PageTitle>My Address </PageTitle>
 
 <div class="row mb-4">
-    <EditForm  class="row" Model="@gViewModel" OnInvalidSubmit=@InvalidFormSubmitted OnValidSubmit="@HandleValidSubmit">
+   <EditForm  class="row" Model="@gViewModel" OnInvalidSubmit=@InvalidFormSubmitted OnValidSubmit="@ValidFormSubmitted">
     <DataAnnotationsValidator />
-     <div class="col-md-3 col-lg-3 col-sm-0"></div>
+    
+    <div class="col-md-3 col-lg-3 col-sm-0"></div>
+
      <div class="col-md-6 col-lg-6 col-sm-12">
          <div class="mb-3 row">
              <div class="col-md-6 col-lg-6 col-sm-12">
@@ -25,17 +27,16 @@
                     <ValidationMessage For="() => gViewModel.LastName"/>
              </div>
          </div>
-      </div>
+     </div>
 
       <div class="col-md-3 col-lg-3 col-sm-0"></div>
         <AddressComponentForUSA @ref="addressForUsa" regoinLists=@regoinLists usaAddress=@usaAddress />
       <div class="col-md-3 col-lg-3 col-sm-0"></div>
     
-      <div class="col-md-3 col-lg-3 col-sm-12">
+      <div style="text-align:center" class="col-md-6 col-lg-6 col-sm-12">
         <button class="btn btn-outline-info"  type="submit">Submit</button>
+        <button class="btn btn-outline-dark"  type="button" @onclick="ResetForm" >Cancel</button>
      </div>
-
-     <div>@testMessage</div>
 
   </EditForm>
 
@@ -46,15 +47,12 @@
     List< StateList.State> regoinLists = new List< StateList.State>();
     UsaAddressViewModel usaAddress = new UsaAddressViewModel();
     GuestUserViewModel gViewModel = new GuestUserViewModel();
-
     AddressComponentForUSA addressForUsa;
-    string testMessage;
 
     protected override async Task OnInitializedAsync() => regoinLists = await Http.GetFromJsonAsync<List<StateList.State>>("api/Address/region").ConfigureAwait(false);
 
-    protected async Task HandleValidSubmit()
+    protected async Task ValidFormSubmitted()
     {
-        // await JsRuntime.InvokeVoidAsync("alert", "Warning!"); // Alert
         if (addressForUsa.CanSubmit())
         {
             var myAddress = gViewModel;
@@ -63,12 +61,18 @@
         }
     }
 
-    void InvalidFormSubmitted(EditContext editContext)
+    protected void InvalidFormSubmitted(EditContext editContext)
     {
         if (addressForUsa.CanSubmit())
         {
-            
+            //TODO : work on  message
         }
+    }
+
+    protected void ResetForm()
+    {
+        usaAddress = new UsaAddressViewModel();
+        gViewModel = new GuestUserViewModel();
     }
 
 }

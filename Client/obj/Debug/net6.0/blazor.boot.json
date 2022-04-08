@@ -197,14 +197,14 @@
       "netstandard.dll": "sha256-E48Na3ZQWKExltzTwgP0Ao+UqWhiVYeerXfUL9lEc+c=",
       "System.Private.CoreLib.dll": "sha256-J85Z1XnwapHef31sR58JFq+0HrFP5BjOoObPKjdFHCw=",
       "Addressfinder.Shared.dll": "sha256-lBHMY9C0qe07fFItyccAMmin20ZKrSLIyqof4H0lNfM=",
-      "Addressfinder.Client.dll": "sha256-cLfgxkfSalNoZsDLrujWh2H\/HekxWL55oAvZ6cjD7Zg="
+      "Addressfinder.Client.dll": "sha256-sjgntuPRVXwd3L6hsz+nnvKdI5koReSndUZmWCnBBMI="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "Addressfinder.Shared.pdb": "sha256-OsNEqIcZDDQ2P+qcnq5a0YhtQgQxljCHiZX3tLaUCWw=",
-      "Addressfinder.Client.pdb": "sha256-4Ugkg\/z5vi8ArehjozpxQnJB20RT01FO4QtHTwx4o3E="
+      "Addressfinder.Client.pdb": "sha256-spui6pYMLujgwwSzgxGn2KFyhx5UODixatj2UoPbFuc="
     },
     "runtime": {
       "dotnet.6.0.0.7iuus85ukp.js": "sha256-LOq52qjRa3+zt3w4UL10rS3UdwHxVQxW0JAsMPO9QAM=",
